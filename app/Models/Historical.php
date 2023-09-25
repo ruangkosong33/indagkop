@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Vision extends Model
+class Historical extends Model
 {
     use HasFactory, Sluggable;
 
-    protected $table='visions';
+    protected $table='historicals';
 
-    protected $fillable=['title_vision', 'slug', 'description'];
+    protected $fillable=['title_historical', 'slug', 'description'];
 
     protected $hidden=[];
 
@@ -20,7 +20,7 @@ class Vision extends Model
     {
         return [
             'slug' => [
-                'source' => 'title_vision'
+                'source' => 'title_historical'
             ]
         ];
     }
