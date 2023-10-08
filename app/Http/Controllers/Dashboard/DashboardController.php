@@ -9,8 +9,6 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $dashboard=Dashboard::all();
-
-        return view('admin.pages.dashboard.index-dashboard', ['dashboard'=>$dashboard]);
+        return view('admin.pages.dashboard.index-dashboard');
     }
 }
