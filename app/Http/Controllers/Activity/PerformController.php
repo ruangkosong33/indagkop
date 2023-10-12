@@ -67,7 +67,6 @@ class PerformController extends Controller
             unset($perform['file']);
         }
 
-
         $perform->update([
             'title_perform'=>$request->title_perform,
             'file'=>$files,

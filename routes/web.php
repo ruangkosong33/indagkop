@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AboutUs\TaskController;
 use App\Http\Controllers\Activity\IkuController;
 use App\Http\Controllers\ACtivity\SopController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\Activity\RenstraController;
 use App\Http\Controllers\AboutUs\StructureController;
 use App\Http\Controllers\AboutUs\HistoricalController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Organization\DivisionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +35,14 @@ Route::get('/', function () {
 //DASHBOARD
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
+//CATEGORY
+Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
+Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
+Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
+Route::get('/category/edit/{category}', [CategoryController::class, 'edit'])->name('category.edit');
+Route::put('/category/{category}', [CategoryController::class, 'update'])->name('category.update');
+Route::delete('/category/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
+
 //VISION
 Route::get('/vision', [VisionController::class, 'index'])->name('vision.index');
 Route::get('/vision/create', [VisionController::class, 'create'])->name('vision.create');
@@ -40,6 +50,14 @@ Route::post('/vision', [VisionController::class, 'store'])->name('vision.store')
 Route::get('/vision/edit/{vision}', [VisionController::class, 'edit'])->name('vision.edit');
 Route::put('/vision/{vision}', [VisionController::class, 'update'])->name('vision.update');
 Route::delete('/vision/{vision}', [VisionController::class, 'destroy'])->name('vision.destroy');
+
+//DIVISION
+Route::get('/division', [DivisionController::class, 'index'])->name('division.index');
+Route::get('/division/create', [DivisionController::class, 'create'])->name('division.create');
+Route::post('/division', [DivisionController::class, 'store'])->name('division.store');
+Route::get('/division/edit/{division}', [DivisionController::class, 'edit'])->name('division.edit');
+Route::put('/division/{division}', [DivisionController::class, 'update'])->name('division.update');
+Route::delete('/division/{division}', [DivisionController::class, 'destroy'])->name('division.destroy');
 
 //HISTORICAL
 Route::get('/historical', [HistoricalController::class, 'index'])->name('historical.index');

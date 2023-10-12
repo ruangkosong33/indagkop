@@ -16,6 +16,7 @@ class Historical extends Model
 
     protected $hidden=[];
 
+    //SLUG
     public function sluggable(): array
     {
         return [

@@ -12,10 +12,11 @@ class Evaluation extends Model
 
     protected $table='evaluations';
 
-    protected $fillable=[];
+    protected $fillable=['title_evaluation', 'slug', 'image', 'file'];
 
     protected $hidden=[];
 
+    //SLUG
     public function sluggable(): array
     {
         return [
