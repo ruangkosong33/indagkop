@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('slug');
             $table->string('image')->nullable();
             $table->string('file')->nullable();
-            $table->string('year');
+            $table->string('year')->nullable();
             $table->timestamps();
         });
     }

@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Category extends Model
+class Post extends Model
 {
     use HasFactory, Sluggable;
 
-    protected $table='categorys';
+    protected $table='posts';
 
-    protected $fillable=['title_category', 'slug'];
+    protected $fillable=['title_post', 'slug', 'category_id', 'description', 'image', 'user_id'];
 
     protected $hidden=[];
 
@@ -21,19 +21,20 @@ class Category extends Model
     {
         return [
             'slug' => [
-                'source' => 'title_category',
+                'source' => 'title_post',
             ]
         ];
     }
 
     //RELATION
-    public function post()
+    public function category()
     {
-        return $this->hasMany(Post::class, 'post_id', 'id');
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
-    public function gallery()
+    public function user()
     {
-        return $this->hasMany(Gallery::class, 'gallery_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
 }

@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('filerenstras', function (Blueprint $table) {
+        Schema::create('videos', function (Blueprint $table) {
             $table->id();
+            $table->string('title_video');
+            $table->string('slug');
+            $table->string('image')->nullable();
+            $table->string('description')->nullable();
+            $table->string('link')->nullable();
             $table->timestamps();
         });
     }
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('filerenstras');
+        Schema::dropIfExists('videos');
     }
 };

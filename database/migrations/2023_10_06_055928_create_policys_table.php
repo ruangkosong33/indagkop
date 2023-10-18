@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title_policy');
             $table->string('slug');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

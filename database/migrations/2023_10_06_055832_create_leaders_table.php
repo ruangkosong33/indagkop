@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
-            $table->string('image');
-            $table->string('position');
-            $table->string('periode');
+            $table->string('image')->nullable();
+            $table->string('position')->nullable();
+            $table->string('periode')->nullable();
             $table->timestamps();
         });
     }

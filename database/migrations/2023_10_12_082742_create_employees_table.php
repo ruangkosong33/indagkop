@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('division_id');
-            $table->foreign('division_id')->references('id')->on('divisions');
+            $table->foreign('division_id')->references('id')->on('divisions')->nullable();
             $table->string('name');
             $table->string('slug');
             $table->string('nip')->nullable();
             $table->string('image')->nullable();
-            $table->enum('level', ['1','2','3']);
-            $table->string('position');
-            $table->string('education');
-            $table->string('pim');
+            $table->enum('level', ['1','2','3'])->nullable();
+            $table->string('position')->nullable();
+            $table->string('education')->nullable();
+            $table->string('pim')->nullable();
             $table->timestamps();
         });
     }

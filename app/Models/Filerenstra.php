@@ -16,5 +16,4 @@ class Filerenstra extends Model
 
     protected $hidden=[];
 
-
 }

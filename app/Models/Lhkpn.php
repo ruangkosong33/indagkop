@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Banner extends Model
+class Lhkpn extends Model
 {
     use HasFactory, Sluggable;
 
-    protected $table='banners';
+    protected $table='lhkpns';
 
-    protected $fillable=['title_banner', 'slug', 'image'];
+    protected $fillable=['title_lhkpn', 'slug', 'description', 'year', 'file'];
 
     protected $hidden=[];
 
@@ -21,7 +21,7 @@ class Banner extends Model
     {
         return [
             'slug' => [
-                'source' => 'title_banner'
+                'source' => 'title_lhkpn',
             ]
         ];
     }
