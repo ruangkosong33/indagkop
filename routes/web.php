@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AboutUs\TaskController;
 use App\Http\Controllers\Activity\IkuController;
 use App\Http\Controllers\ACtivity\SopController;
+use App\Http\Controllers\AboutUs\LhkpnController;
 use App\Http\Controllers\AboutUs\LeaderController;
 use App\Http\Controllers\AboutUs\PolicyController;
 use App\Http\Controllers\AboutUs\VisionController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\Activity\NeracaController;
 use App\Http\Controllers\Activity\RenstraController;
 use App\Http\Controllers\AboutUs\StructureController;
 use App\Http\Controllers\AboutUs\HistoricalController;
+use App\Http\Controllers\Activity\EvaluationController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Organization\DivisionController;
 
@@ -66,6 +68,14 @@ Route::post('/historical', [HistoricalController::class, 'store'])->name('histor
 Route::get('/historical/edit/{historical}', [HistoricalController::class, 'edit'])->name('historical.edit');
 Route::put('/historical/{historical}', [HistoricalController::class, 'update'])->name('historical.update');
 Route::delete('/historical/{historical}', [HistoricalController::class, 'destroy'])->name('historical.destroy');
+
+//BANNER
+Route::get('/lhkpn', [LhkpnController::class, 'index'])->name('lhkpn.index');
+Route::get('/lhkpn/create', [LhkpnController::class, 'create'])->name('lhkpn.create');
+Route::post('/lhkpn', [LhkpnController::class, 'store'])->name('lhkpn.store');
+Route::get('/lhkpn/edit/{lhkpn}', [LhkpnController::class, 'edit'])->name('lhkpn.edit');
+Route::put('/lhkpn/{lhkpn}', [LhkpnController::class, 'update'])->name('lhkpn.update');
+Route::delete('/lhkpn/{lhkpn}', [LhkpnController::class, 'destroy'])->name('lhkpn.destroy');
 
 //QUALITY
 Route::get('/quality', [QualityController::class, 'index'])->name('quality.index');
@@ -147,4 +157,10 @@ Route::get('/banner/edit/{banner}', [BannerController::class, 'edit'])->name('ba
 Route::put('/banner/{banner}', [BannerController::class, 'update'])->name('banner.update');
 Route::delete('/banner/{banner}', [BannerController::class, 'destroy'])->name('banner.destroy');
 
-
+//EVALUATION
+Route::get('/evaluation', [EvaluationController::class, 'index'])->name('evaluation.index');
+Route::get('/evaluation/create', [EvaluationController::class, 'create'])->name('evaluation.create');
+Route::post('/evaluation', [EvaluationController::class, 'store'])->name('evaluation.store');
+Route::get('/evaluation/edit/{evaluation}', [EvaluationController::class, 'edit'])->name('evaluation.edit');
+Route::put('/evaluation/{evaluation}', [EvaluationController::class, 'update'])->name('evaluation.update');
+Route::delete('/evaluation/{evaluation}', [EvaluationController::class, 'destroy'])->name('evaluation.destroy');
