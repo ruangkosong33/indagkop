@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Activity;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class FileRenstraController extends Controller
+class FilerenstraController extends Controller
 {
     public function index(Renstra $renstra)
     {
