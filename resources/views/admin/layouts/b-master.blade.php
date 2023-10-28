@@ -30,6 +30,7 @@
 
     <body class="hold-transition sidebar-mini layout-fixed">
 
+        <!--Main Wrapper -->
         <div class="wrapper">
 
             <!-- Preloader -->
@@ -46,9 +47,37 @@
                 @include('admin.layouts.b-sidebar')
             <!-- End Sidebar -->
 
-            <!-- Main Content -->
-                @yield('content')
-            <!-- End Main Content -->
+            <!-- Content Wrapper -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
+                <div class="content-header">
+                  <div class="container-fluid">
+                    <div class="row mb-2">
+                      <div class="col-sm-6">
+                        <h1 class="m-0">@yield('title')</h1>
+                      </div>
+                      <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            @section('breadcrumb')
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            @show
+                        </ol>
+                      </div>
+                    </div><!-- End Row -->
+                  </div><!-- End Container Fluid -->
+                </div>
+                <!-- End Content Header -->
+            
+                <!-- Main Content -->
+                <section class="content">
+                  <div class="container-fluid">
+                    @yield('content')
+                  </div>
+                </section>
+                <!--End Main Content -->
+
+            </div>
+            <!-- End Content Wrapper -->
 
             <!-- Footer -->
                 @include('admin.layouts.b-footer')
@@ -57,10 +86,10 @@
             <!-- Control Sidebar -->
             <aside class="control-sidebar control-sidebar-dark">
             </aside>
-            <!-- /.control-sidebar -->
+            <!-- End Control Sidebar -->
 
         </div>
-        <!-- ./wrapper -->
+        <!-- End Main Wrapper -->
 
         <!-- jQuery -->
         @include('admin.layouts.b-js')

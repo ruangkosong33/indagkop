@@ -10,7 +10,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $category=Category::all();
+        $category=Category::orderBy('title_category')->get();
 
         return view('admin.pages.category.index-category', ['category'=>$category]);
     }
@@ -32,7 +32,7 @@ class CategoryController extends Controller
 
         Alert::success('Berhasil', 'Data Berhasil Di Simpan');
 
-        return redirect()->route('category.index');
+        return redirect()->route('category.index')->with(['message'=>'Kategori Berhasil Di Tambahkan', 'success'=>true]);
     }
 
     public function edit(Category $category)
@@ -52,7 +52,7 @@ class CategoryController extends Controller
 
         Alert::success('Berhasil', 'Data Berhasil Di Update');
 
-        return redirect()->route('category.index');
+        return redirect()->route('category.index')->with(['message'=>'Kategori Berhasil Di Update', 'success'=>true]);
     }
 
     public function destroy(Category $category)
@@ -61,7 +61,7 @@ class CategoryController extends Controller
 
         Alert::success('Berhasil', 'Data Berhasil Di Hapus');
 
-        return redirect()->route('category.index');
+        return redirect()->route('category.index')->with(['message'=>'Kategori Berhasil Di Hapus', 'success'=>true]);
     }
 
 }

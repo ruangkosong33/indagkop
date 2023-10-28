@@ -2,7 +2,7 @@
 
     @isset($thead)
 
-        <thead>
+        <thead class="bg-primary">
             {{$thead}}
         </thead>
 

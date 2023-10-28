@@ -1,7 +1,10 @@
 <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.2.0
-    </div>
+  <!-- To the right -->
+  <div class="float-right d-none d-sm-inline">
+      <span>
+          Made with <i class="fa fa-heart pulse" style="color: #e25555;"></i> in <a href="#" target="_blank">PF</a>
+      </span>
+  </div>
+  <!-- Default to the left -->
+  <strong>Copyright &copy; 2023 Dinas Perindustrian & Perdagangan Prov Kaltim</strong>
 </footer>

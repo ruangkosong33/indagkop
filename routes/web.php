@@ -18,6 +18,7 @@ use App\Http\Controllers\AboutUs\HistoricalController;
 use App\Http\Controllers\Activity\EvaluationController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Organization\DivisionController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,7 @@ use App\Http\Controllers\Organization\DivisionController;
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| be assigned to the "web" middleware group. Make a something great!
 |
 */
 
@@ -34,8 +35,36 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//DASHBOARD
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+// //MIDDLEWARE
+// Route::middleware(['auth',])->group(function () {
+
+// });
+
+// Route::prefix('operator')->middleware(['auth', 'auth.operator'])->group(function () {
+    
+// }); 
+
+// Route::prefix('subadmin')->middleware(['auth', 'auth.subadmin'])->group(function () {
+    
+// });
+
+Route::group(['middleware'=>['auth', 'role:admin']], function()
+{
+    //DASHBOARD
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+});
+
+Route::group(['middleware'=>['auth', 'role:operator']], function()
+{
+    
+});
+
+
 
 //CATEGORY
 Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
@@ -164,3 +193,10 @@ Route::post('/evaluation', [EvaluationController::class, 'store'])->name('evalua
 Route::get('/evaluation/edit/{evaluation}', [EvaluationController::class, 'edit'])->name('evaluation.edit');
 Route::put('/evaluation/{evaluation}', [EvaluationController::class, 'update'])->name('evaluation.update');
 Route::delete('/evaluation/{evaluation}', [EvaluationController::class, 'destroy'])->name('evaluation.destroy');
+
+
+
+Route::get('logout', function()
+{
+    Auth::logout();
+});

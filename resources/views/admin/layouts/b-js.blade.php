@@ -29,3 +29,5 @@
 <script src="{{asset('bk/dist/js/adminlte.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('bk/dist/js/pages/dashboard.js')}}"></script>
+
+@stack('toast')
