@@ -29,6 +29,7 @@
 @stack('js_datatable')
 <!-- AdminLTE App -->
 <script src="{{asset('bk/dist/js/adminlte.js')}}"></script>
+@stack('script')
 
 
 

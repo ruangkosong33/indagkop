@@ -184,7 +184,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link {{request()->is('post*') ? 'active' : ''}}">
               <i class="nav-icon fas fa-newspaper"></i>
               <p>
                 Berita
@@ -193,16 +193,16 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="{{route('post.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>ChartJS</p>
+                  <p>Berita Utama</p>
                 </a>
               </li>
             </ul>
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link {{request()->is('commodity*') ? 'active' : ''}}">
               <i class="nav-icon fas fa-info"></i>
               <p>
                 Informasi
