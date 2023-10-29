@@ -18,26 +18,22 @@
     <link rel="stylesheet" href="{{asset('bk/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
     <!-- JQVMap -->
     <link rel="stylesheet" href="{{asset('bk/plugins/jqvmap/jqvmap.min.css')}}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{asset('bk/dist/css/adminlte.min.css')}}">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="{{asset('bk/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
     <!-- Daterange picker -->
     <link rel="stylesheet" href="{{asset('bk/plugins/daterangepicker/daterangepicker.css')}}">
     <!-- summernote -->
     <link rel="stylesheet" href="{{asset('bk/plugins/summernote/summernote-bs4.min.css')}}">
+    @stack('css_datatable')
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{asset('bk/dist/css/adminlte.min.css')}}">
+    @stack('css_cdn')
     </head>
 
     <body class="hold-transition sidebar-mini layout-fixed">
 
         <!--Main Wrapper -->
         <div class="wrapper">
-
-            <!-- Preloader -->
-            <div class="preloader flex-column justify-content-center align-items-center">
-                <img class="animation__shake" src="{{asset('bk/dist/img/AdminLTELogo.png')}}" alt="AdminLTELogo" height="60" width="60">
-            </div>
-            <!-- End Preloader -->
 
             <!-- Navbar -->
                 @include('admin.layouts.b-nav')
@@ -94,6 +90,10 @@
         <!-- jQuery -->
         @include('admin.layouts.b-js')
         <!-- End Jquery -->
+
+         <!-- Sweat Alert -->
+         @include('sweetalert::alert')
+         <!-- End Sweat Alert -->
 
     </body>
 </html>

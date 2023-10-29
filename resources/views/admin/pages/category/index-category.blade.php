@@ -15,7 +15,7 @@
                     <a href="{{route('category.create')}}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah</a>
                 </x-slot>
 
-                <x-table>
+                <x-table id="myTable">
                     <x-slot name="thead">
                         <th>No</th>
                         <th>Kategori</th>
@@ -44,7 +44,23 @@
         </div>
     </div>
 
+    @include('include.datatable')
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap4.min.js"></script>
+    
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+        $('#myTable').DataTable();
+        });
+    </script>
+
 @endsection
 
 <x-toast />
+
+
+
 

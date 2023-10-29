@@ -25,9 +25,13 @@
 <script src="{{asset('bk/plugins/summernote/summernote-bs4.min.js')}}"></script>
 <!-- overlayScrollbars -->
 <script src="{{asset('bk/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+@stack('toast')
+@stack('js_datatable')
 <!-- AdminLTE App -->
 <script src="{{asset('bk/dist/js/adminlte.js')}}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{asset('bk/dist/js/pages/dashboard.js')}}"></script>
 
-@stack('toast')
+
+
+
+
+
