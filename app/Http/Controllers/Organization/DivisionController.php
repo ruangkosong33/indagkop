@@ -26,7 +26,7 @@ class DivisionController extends Controller
         $this->validate($request, [
             'title_division'=>'required',
             'description'=>'required',
-            'image'=>'mimes:jpeg,jpg,png|max:5000'
+            'image'=>'mimes:jpeg,jpg,png|max:5000|nullable'
         ]);
 
         if($request->file('image'))
@@ -34,8 +34,9 @@ class DivisionController extends Controller
             $file=$request->file('image');
             $extension=$file->getClientOriginalName();
             $images=$extension;
-            $file->storeAs('/uploads/image-division', $images);
+            $file->storeAs('public/uploads/image-division', $images);
         }
+        $images='noimage.jpg';
 
         $division=Division::create([
             'title_division'=>$request->title_division,
@@ -58,17 +59,17 @@ class DivisionController extends Controller
         $this->validate($request, [
             'title_division'=>'required',
             'description'=>'required',
-            'image'=>'mimes:jpeg,jpg,png|max:5000'
+            'image'=>'mimes:jpeg,jpg,png|max:5000|nullable'
         ]);
+
+        $images=$division->image;
 
         if($request->file('image'))
         {
             $file=$request->file('image');
             $extension=$file->getClientOriginalName();
             $images=$extension;
-            $file->storeAs('uploads/image-division', $images);
-        }else{
-            unset($division['image']);
+            $file->storeAs('public/uploads/image-division', $images);
         }
 
         $division->update([
