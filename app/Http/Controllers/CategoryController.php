@@ -10,7 +10,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $category=Category::orderBy('title_category')->get();
+        $category=Category::orderBy('id')->get();
 
         return view('admin.pages.category.index-category', ['category'=>$category]);
     }

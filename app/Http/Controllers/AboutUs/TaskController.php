@@ -11,7 +11,7 @@ class TaskController extends Controller
 {
     public function index()
     {
-        $task=Task::all();
+        $task=Task::orderBy('id')->get();
 
         return view('admin.pages.task.index-task', ['task'=>$task]);
     }

@@ -11,7 +11,7 @@ class QualityController extends Controller
 {
     public function index()
     {
-        $quality=Quality::all();
+        $quality=Quality::orderBy('id')->get();
 
         return view('admin.pages.quality.index-quality', ['quality'=>$quality]);
     }

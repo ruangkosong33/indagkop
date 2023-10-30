@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\AboutUs;
 
-use App\Http\Controllers\Controller;
+use App\Models\Leader;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class LeaderController extends Controller
 {
     public function index()
     {
-        $leader=Leader::all()->latest()->get();
+        $leader=Leader::orderBy('id')->get();
 
         return view('admin.pages.leader.index-leader', ['leader'=>$leader]);
     }

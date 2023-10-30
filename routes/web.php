@@ -111,7 +111,7 @@ Route::group(['middleware'=>['auth', 'role:admin']], function()
     //STRUCTURE
     Route::get('/structure', [StructureController::class, 'index'])->name('structure.index');
     Route::get('/structure/create', [StructureController::class, 'create'])->name('structure.create');
-    Route::get('/structure', [StructureController::class, 'store'])->name('structure.store');
+    Route::post('/structure', [StructureController::class, 'store'])->name('structure.store');
     Route::get('/structure/edit/{structure}', [StructureController::class, 'edit'])->name('structure.edit');
     Route::put('/structure/{structure}', [StructureController::class, 'update'])->name('structure.update');
     Route::delete('/structure/{structure}', [StructureController::class, 'destroy'])->name('structure.destroy');
@@ -126,7 +126,7 @@ Route::group(['middleware'=>['auth', 'role:admin']], function()
 
     //TASK
     Route::get('/task', [TaskController::class, 'index'])->name('task.index');
-    Route::get('/task/craete', [TaskController::class, 'create'])->name('task.create');
+    Route::get('/task/create', [TaskController::class, 'create'])->name('task.create');
     Route::post('/task', [TaskController::class, 'store'])->name('task.store');
     Route::get('/task/edit/{task}', [TaskController::class, 'edit'])->name('task.edit');
     Route::put('/task/{task}', [TaskController::class, 'update'])->name('task.update');
@@ -191,7 +191,7 @@ Route::group(['middleware'=>['auth', 'role:admin']], function()
 
 Route::group(['middleware'=>['auth', 'role:operator']], function()
 {
-    
+
 });
 
 

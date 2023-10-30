@@ -11,7 +11,7 @@ class LhkpnController extends Controller
 {
     public function index()
     {
-        $lhkpn=Lhkpn::latest()->get();
+        $lhkpn=Lhkpn::orderBy('id')->get();
 
         return view('admin.pages.lhkpn.index-lhkpn', ['lhkpn'=>$lhkpn]);
     }

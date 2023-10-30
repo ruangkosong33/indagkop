@@ -11,7 +11,7 @@ class VisionController extends Controller
 {
     public function index()
     {
-        $vision=Vision::all();
+        $vision=Vision::orderBy('id')->get();
 
         return view('admin.pages.vision.index-vision', ['vision'=>$vision]);
     }

@@ -11,7 +11,7 @@ class PolicyController extends Controller
 {
     public function index()
     {
-        $policy=Policy::all();
+        $policy=Policy::orderBy('id')->get();
 
         return view('admin.pages.policy.index-policy', ['policy'=>$policy]);
     }

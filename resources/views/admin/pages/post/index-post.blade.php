@@ -57,18 +57,18 @@
 
         <div class="row">
             <div class="col-lg-6">
-                <div class="form-group row">
+                <div class="form-group">
                     <label for="title_post">Judul</label>
                     <input type="text" name="title_post" class="form-control">
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="form-group row">
+                <div class="form-group">
                     <label for="title_category">Kategori</label>
                     <select name="title_category" id="category" class="form-control"></select>
                 </div>
             </div>
-        
+
         <x-slot name="footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
             <button class="btn btn-primary">Simpan</button>
@@ -76,11 +76,11 @@
     </x-modal>
 
     @include('include.datatable')
-    
+
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap4.min.js"></script>
-    
+
     <script type="text/javascript">
         $(document).ready(function()
         {
@@ -99,7 +99,7 @@
         $('.modal').modal('show');
     }
 </script>
-    
+
 @endpush
 
 

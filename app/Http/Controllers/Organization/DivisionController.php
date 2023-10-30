@@ -11,7 +11,7 @@ class DivisionController extends Controller
 {
     public function index()
     {
-        $division=Division::all();
+        $division=Division::orderBy('id')->get();
 
         return view('admin.pages.division.index-division', ['division'=>$division]);
     }
@@ -25,7 +25,6 @@ class DivisionController extends Controller
     {
         $this->validate($request, [
             'title_division'=>'required',
-            'detail'=>'required',
             'description'=>'required',
             'image'=>'mimes:jpeg,jpg,png|max:5000'
         ]);
@@ -35,12 +34,11 @@ class DivisionController extends Controller
             $file=$request->file('image');
             $extension=$file->getClientOriginalName();
             $images=$extension;
-            $file->storeAs('uploads/image-division', $images);
+            $file->storeAs('/uploads/image-division', $images);
         }
 
         $division=Division::create([
             'title_division'=>$request->title_division,
-            'detail'=>$request->detail,
             'description'=>$request->description,
             'image'=>$images,
         ]);
@@ -59,7 +57,6 @@ class DivisionController extends Controller
     {
         $this->validate($request, [
             'title_division'=>'required',
-            'detail'=>'required',
             'description'=>'required',
             'image'=>'mimes:jpeg,jpg,png|max:5000'
         ]);
@@ -76,7 +73,6 @@ class DivisionController extends Controller
 
         $division->update([
             'title_division'=>$request->title_division,
-            'detail'=>$request->detail,
             'description'=>$request->description,
             'image'=>$images,
         ]);

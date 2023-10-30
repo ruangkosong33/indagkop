@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\AboutUs;
 
-use App\Http\Controllers\Controller;
+use App\Models\Structure;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class StructureController extends Controller
 {
     public function index()
     {
-        $structure=Structure::all();
+        $structure=Structure::orderBy('id')->get();
 
         return view('admin.pages.structure.index-structure', ['structure'=>$structure]);
     }

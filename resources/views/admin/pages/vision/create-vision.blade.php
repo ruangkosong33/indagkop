@@ -1,21 +1,21 @@
 @extends('admin.layouts.b-master')
 
-@section('title', 'Kebijakan Mutu')
+@section('title', 'Visi & Misi')
 @section('breadcrumb')
     @parent
-    <li class="breadcrumb-item active"><a href="{{route('quality.index')}}">Kebijakan Mutu</a></li>
-    <li class="breadcrumb-item active">Tambah Kebijakan Mutu</li>
+    <li class="breadcrumb-item active"><a href="{{route('vision.index')}}">Visi & Misi</a></li>
+    <li class="breadcrumb-item active">Tambah Visi & Misi</li>
 @endsection
 
 @section('content')
     <div class="row">
         <div class="col-lg-12">
-            <form action="{{route('quality.store')}}" method="POST">
+            <form action="{{route('vision.store')}}" method="POST">
                 @csrf
                 <x-card>
                     <div class="form-group">
-                        <label for="title_quality">Judul</label>
-                        <input type="text" class="form-control" name="title_quality" placeholder="Kebijakan Mutu">
+                        <label for="title_vision">Judul</label>
+                        <input type="text" class="form-control" name="title_vision" placeholder="Visi & Misi">
                     </div>
                     <div class="form-group">
                         <label for="description">Deskripsi</label>

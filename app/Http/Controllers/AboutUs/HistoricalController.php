@@ -11,7 +11,7 @@ class HistoricalController extends Controller
 {
     public function index()
     {
-        $historical=Historical::all();
+        $historical=Historical::orderBy('id')->get();
 
         return view('admin.pages.historical.index-historical', ['historical'=>$historical]);
     }

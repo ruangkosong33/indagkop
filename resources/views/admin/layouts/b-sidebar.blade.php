@@ -34,7 +34,7 @@
           <li class="nav-header">Menu</li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link {{request()->is('leader*') ? 'active' : ''}}">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Tentang Kami
@@ -43,7 +43,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="{{route('leader.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Profil Kepala Dinas</p>
                 </a>
@@ -51,7 +51,7 @@
             </ul>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="{{route('historical.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Sejarah Dinas</p>
                 </a>
@@ -59,7 +59,7 @@
             </ul>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="{{route('vision.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Visi & Misi</p>
                 </a>
@@ -67,7 +67,7 @@
             </ul>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Struktur Organisasi</p>
                 </a>
@@ -75,7 +75,7 @@
             </ul>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="{{route('task.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tugas Pokok & Fungsi</p>
                 </a>
@@ -83,7 +83,7 @@
             </ul>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="{{route('quality.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Kebijakan Mutu</p>
                 </a>
@@ -91,7 +91,7 @@
             </ul>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="{{route('policy.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Peraturan & Kebijakan</p>
                 </a>
@@ -100,7 +100,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link {{request()->is('renstra*') ? 'active' : ''}}">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Program & Kegiatan
@@ -109,7 +109,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="{{route('renstra.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Rencana Strategis</p>
                 </a>
@@ -166,7 +166,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link {{request()->is('division*') ? 'active' : ''}}">
               <i class="nav-icon fas fa-building"></i>
               <p>
                 Bidang & UPTD
@@ -175,9 +175,9 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/charts/chartjs.html" class="nav-link">
+                <a href="{{route('division.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>ChartJS</p>
+                  <p>Divisi</p>
                 </a>
               </li>
             </ul>
@@ -227,7 +227,7 @@
               </p>
             </a>
           </li>
-      
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

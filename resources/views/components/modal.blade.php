@@ -6,7 +6,7 @@
     'aria-hidden'=>'true',
     ])}}>
 
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <form method="POST">
                 @isset($title)
@@ -17,15 +17,14 @@
                     </button>
                 </div>
                 @endisset
-        
+
                 <div class="modal-body">
                     {{$slot}}
                 </div>
-    
+
                 @isset($footer)
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    {{$footer}}
                 </div>
                 @endisset
             </form>
