@@ -65,9 +65,14 @@
             <div class="col-lg-6">
                 <div class="form-group">
                     <label for="title_category">Kategori</label>
-                    <select name="title_category" id="category" class="form-control"></select>
+                    <select name="title_category" id="category" class="select2 form-control"></select>
                 </div>
             </div>
+        </div>
+        <div class="form-group">
+            <label for="description">Deskripsi</label>
+            <textarea name="description" class="form-control summernote"></textarea>
+        </div>
 
         <x-slot name="footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -81,7 +86,7 @@
     <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap4.min.js"></script>
 
-    <script type="text/javascript">
+    <script>
         $(document).ready(function()
         {
         $('#myTable').DataTable();
@@ -92,11 +97,15 @@
 
 <x-toast />
 
+@include('include.select2')
+@include('include.summernote')
+@include('include.datepicker')
+
 @push('script')
 <script>
     function addForm(url)
     {
-        $('.modal').modal('show');
+        $('#modal-form').modal('show');
     }
 </script>
 

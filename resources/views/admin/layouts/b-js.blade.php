@@ -18,15 +18,10 @@
 <script src="{{asset('bk/plugins/jquery-knob/jquery.knob.min.js')}}"></script>
 <!-- daterangepicker -->
 <script src="{{asset('bk/plugins/moment/moment.min.js')}}"></script>
-<script src="{{asset('bk/plugins/daterangepicker/daterangepicker.js')}}"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="{{asset('bk/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
-<!-- Summernote -->
-<script src="{{asset('bk/plugins/summernote/summernote-bs4.min.js')}}"></script>
 <!-- overlayScrollbars -->
 <script src="{{asset('bk/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
+@stack('js_vendor')
 @stack('toast')
-@stack('js_datatable')
 <!-- AdminLTE App -->
 <script src="{{asset('bk/dist/js/adminlte.js')}}"></script>
 @stack('script')

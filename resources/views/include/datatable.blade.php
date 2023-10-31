@@ -1,4 +1,4 @@
-@push('css_datatable')
+@push('css_vendor')
     <!-- DataTables -->
     <link rel="stylesheet" href="{{asset('bk/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
     <link rel="stylesheet" href="{{asset('bk/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/dataTables.bootstrap4.min.css">
 @endpush
 
-@push('js_datatable')
+@push('js_vendor')
     <!-- DataTables  & Plugins -->
     <script src="{{asset('bk/plugins/datatables/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('bk/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
