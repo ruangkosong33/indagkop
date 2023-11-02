@@ -19,7 +19,7 @@
         format: 'YYYY-MM-DD',
         locale: 'id'
     });
-    $('datetimepicker').datetimepicker({
+    $('.datetimepicker').datetimepicker({
         icons: {time: 'far fa-clock'},
         format: 'YYYY-MM-DD HH:mm',
         locale: 'id',

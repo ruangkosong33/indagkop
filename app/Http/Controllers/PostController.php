@@ -12,9 +12,11 @@ class PostController extends Controller
 {
     public function index()
     {
-        $post=Post::with(['category', 'user'])->latest()->get();
+        $post=Post::orderBy('id')->get();
 
-        return view('admin.pages.post.index-post', ['post'=>$post]);
+        $category=Category::orderBy('id')->get();
+
+        return view('admin.pages.post.index-post', ['post'=>$post, 'category'=>$category]);
     }
 
     public function create()
