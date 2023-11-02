@@ -1,12 +1,14 @@
 <div {{$attributes->merge([
     'class'=>'modal fade',
+    'data-backdrop'=>'static',
+    'data-keyboard'=>'false',
     'id'=> 'modal-form',
     'tabindex'=> '-1',
     'aria-labelledby'=>'exampleModalLabel',
     'aria-hidden'=>'true',
     ])}}>
 
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <form method="POST">
                 @isset($title)

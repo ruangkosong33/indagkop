@@ -20,6 +20,7 @@ use App\Http\Controllers\AboutUs\HistoricalController;
 use App\Http\Controllers\Activity\EvaluationController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Organization\DivisionController;
+use App\Http\Controllers\Organization\EmployeeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -123,6 +124,14 @@ Route::group(['middleware'=>['auth', 'role:admin']], function()
     Route::get('/leader/edit/{leader}', [LeaderController::class, 'edit'])->name('leader.edit');
     Route::put('/leader/{leader}', [LeaderController::class, 'update'])->name('leader.update');
     Route::delete('/leader/{leader}', [LeaderController::class, 'destroy'])->name('leader.destroy');
+
+    //EMPLOYEE
+    Route::get('/employee', [EmployeeController::class, 'index'])->name('employee.index');
+    Route::get('/employee/create', [EmployeeController::class, 'create'])->name('employee.create');
+    Route::post('/employee', [EmployeeController::class, 'store'])->name('employee.store');
+    Route::get('/employee/edit/{employee}', [EmployeeController::class, 'edit'])->name('employee.edit');
+    Route::put('/employee/{employee}', [EmployeeController::class, 'update'])->name('employee.update');
+    Route::delete('/employee/{employee}', [EmployeeController::class, 'destroy'])->name('employee.destroy');
 
     //TASK
     Route::get('/task', [TaskController::class, 'index'])->name('task.index');

@@ -15,16 +15,34 @@
                 <x-card>
                     <div class="form-group">
                         <label for="title_division">Unit Kerja</label>
-                        <input type="text" class="form-control" name="title_division" placeholder="Bidang / UPTD">
+                        <input type="text" class="form-control @error('title_division') is-invalid @enderror" name="title_division" placeholder="Bidang / UPTD">
+
+                        @error('title_division')
+                            <span class="invalid-feedback">{{$message}}</span>
+                        @enderror
+
                     </div>
+
                     <div class="form-group">
                         <label for="description">Deskripsi</label>
-                        <input type="text" class="form-control" name="description" placeholder="Deskripsi">
+                        <textarea class="form-control @error('description') is-invalid @enderror" name="description" placeholder="Deskripsi"></textarea>
+                    
+                        @error('description')
+                            <span class="invalid-feedback">{{$message}}</span>
+                        @enderror
+
                     </div>
+                    
                     <div class="form-group">
                         <label for="image">Gambar</label>
-                        <input type="file" class="form-control" name="image">
+                        <input type="file" class="form-control @error('image') is-invalid @enderror" name="image">
+                        
+                        @error('image')
+                            <span class="invalid-feedback">{{$message}}</span>
+                        @enderror
+                    
                     </div>
+
                     <x-slot name="footer">
                         <button type="reset" class="btn btn-dark">Reset</button>
                         <button type="submit" class="btn btn-primary">Simpan</button>

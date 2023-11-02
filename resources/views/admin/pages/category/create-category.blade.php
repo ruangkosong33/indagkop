@@ -15,7 +15,12 @@
                 <x-card>
                     <div class="form-group row">
                         <label for="title_category">Kategori</label>
-                        <input type="text" class="form-control" name="title_category" placeholder="Nama Kategori">
+                        <input type="text" class="form-control @error('title_category') is-invalid @enderror" name="title_category" placeholder="Nama Kategori">
+                        
+                        @error('title_category')
+                            <span class="invalid-feedback">{{$message}}</span>
+                        @enderror
+
                     </div>
                     <x-slot name="footer">
                         <button type="reset" class="btn btn-dark">Reset</button>

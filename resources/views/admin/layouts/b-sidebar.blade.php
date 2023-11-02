@@ -177,7 +177,15 @@
               <li class="nav-item">
                 <a href="{{route('division.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Divisi</p>
+                  <p>Unit Kerja</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{route('employee.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Pegawai</p>
                 </a>
               </li>
             </ul>
@@ -224,6 +232,15 @@
               <i class="nav-icon fas fa-layer-group"></i>
               <p>
                 Kategori
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{route('banner.index')}}" class="nav-link {{request()->is('banner*') ? 'active' : ''}}">
+              <i class="nav-icon fas fa-draw-polygon"></i>
+              <p>
+                Banner
               </p>
             </a>
           </li>

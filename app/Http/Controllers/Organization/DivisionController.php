@@ -36,7 +36,7 @@ class DivisionController extends Controller
             $images=$extension;
             $file->storeAs('public/uploads/image-division', $images);
         }
-        $images='noimage.jpg';
+            $images='';
 
         $division=Division::create([
             'title_division'=>$request->title_division,

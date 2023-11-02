@@ -11,7 +11,7 @@ class RenstraController extends Controller
 {
     public function index()
     {
-        $renstra=Renstra::latest()->get();
+        $renstra=Renstra::orderBy('id')->get();
 
         return view('admin.pages.renstra.index-renstra', ['renstra'=>$renstra]);
     }

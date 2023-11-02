@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('category_id')->references('id')->on('categorys')->nullable();
             $table->string('description')->nullable();
             $table->string('image')->nullable();
-            $table->boolean('status')->nullable();
+            $table->enum('status', ['publish', 'draft'])->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

@@ -14,14 +14,14 @@ class EmployeeController extends Controller
     {
         $employee=Employee::with(['division'])->get();
 
-        return view('admin.pages.employee.index-employee', ['division'=>$division, 'employee'=>$employee]);
+        return view('admin.pages.employee.index-employee', ['employee'=>$employee]);
     }
 
     public function create()
     {
         $division=Division::all();
 
-        return view('admin.pages.employee.create-employee');
+        return view('admin.pages.employee.create-employee', ['division'=>$division]);
     }
 
     public function store(Request $request)
@@ -29,7 +29,7 @@ class EmployeeController extends Controller
         $this->validate($request, [
             'name'=>'required',
             'nip'=>'required',
-            'image'=>'mimes:jpeg,png,jpg|max:10000',
+            'image'=>'mimes:jpeg,png,jpg|max:10000|nullable',
             'level'=>'required',
             'position'=>'required',
             'education'=>'required',
@@ -41,8 +41,9 @@ class EmployeeController extends Controller
             $file=$request->file('image');
             $extension=$file->getClientOriginalName();
             $images=$extension;
-            $file->storeAs('uploads/image-employee', $images);
+            $file->storeAs('public/uploads/image-employee', $images);
         }
+            $images='';
 
         $employee=Employee::create([
             'division_id'=>$request->division_id,
