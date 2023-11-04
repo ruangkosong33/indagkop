@@ -49,3 +49,15 @@
 @endsection
 
 <x-toast />
+
+    @include('include.datatable')
+
+    @push('script')
+
+    <script>
+        let table;
+
+        $('.table').DataTable();
+    </script>
+    
+    @endpush

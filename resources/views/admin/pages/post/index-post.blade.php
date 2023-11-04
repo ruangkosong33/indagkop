@@ -12,10 +12,12 @@
         <div class="col-lg-12">
             <x-card>
                 <x-slot name="header">
-                    <button onclick="addForm('{{route('post.store')}}')" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah</button>
+                    <button onclick="addForm('{{route('post.store')}}')"
+                    class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah</button>
                 </x-slot>
 
-                <x-table id="myTable">
+                <x-table>
+
                     <x-slot name="thead">
                         <th>No</th>
                         <th>Judul</th>
@@ -24,66 +26,152 @@
                         <th>Status</th>
                         <th>Action</th>
                     </x-slot>
-                    @foreach ($post as $key=>$posts)
-                        <tr>
-                            <td>{{$key+1}}</td>
-                            <td>{{$posts->title_post}}</td>
-                            <td>{{$posts->category->title_category}}</td>
-                            <td>{{$posts->image}}</td>
-                            <td>{{$posts->status}}</td>
-                            <td>
-                                <a href="{{route('post.edit', $posts->id)}}" class="btn btn-warning btn-sm">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <form method="post" action="{{route('post.destroy', $posts->id)}}" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-sm btn-danger btn-delete" onclick="return confirm('Yakin Ingin Menghapus Data?')">
-                                      <i class="fas fa-trash"></i>
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
+
                 </x-table>
             </x-card>
         </div>
     </div>
 
    <!-- Form -->
-    @include('admin.pages.post.form-post')
+    @include('admin.pages.post.form')
    <!-- End Form -->
-    
-    @include('include.datatable')
-
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.2/js/dataTables.bootstrap4.min.js"></script>
-
-    <script>
-        $(document).ready(function()
-        {
-        $('#myTable').DataTable();
-        });
-    </script>
 
 @endsection
 
-<x-toast />
+    <!-- VENDOR -->
+    <x-toast />
 
-@include('include.select2')
-@include('include.summernote')
-@include('include.datepicker')
+    @include('include.datatable')
+    @include('include.select2')
+    @include('include.summernote')
+    @include('include.datepicker')
 
-@push('script')
-<script>
-    function addForm(url)
-    {
-        $('#modal-form').modal('show');
-    }
-</script>
+    @push('script')
+    <script>
 
-@endpush
+        let table;
+
+        $('.table').DataTable();
+
+        function addForm(url, title = 'Tambah')
+        {
+            $('#modal-form').modal('show');
+            $('#modal-form .modal-title').text(title);
+            $('${modal} form').attr('action', url);
+
+            resetForm('${modal} form');
+        }
+
+        function editForm(url, title ='Edit')
+        {
+            $.get(url)
+                .done(response => {
+                    $(modal).modal('show');
+                    $('${modal} .modal-title').text(title);
+                    $('${modal} form').attr('action', url);
+
+                    resetForm('${modal} form');
+
+                    loopForm(response.data);
+                })
+                .fail(errors => {
+                    alert('Tidak Dapat Menampilkan Data');
+                    return;
+                });
+        }
+
+        function submitForm(originalForm)
+        {
+            $.post({
+                url: $(originalForm).attr('action'),
+                data: new FormData(originalForm),
+                dataType: 'json',
+                contentType: false,
+                cache: false,
+                processData: false,
+            })
+            .done(response => {
+                $(modal).modal('hide');
+                showAlert(response.message, 'success');
+                table.ajax.reload();
+            })
+            .fail(errors => {
+                if(errors.status == 422)
+                {
+                    loopErrors(errors.responseJSON.errors);
+                }
+
+                showAlert(errors.responseJSON.message, 'danger');
+            });
+        }
+
+        function deleteData(url)
+        {
+            if(confirm('Apakah Yakin Data Di Hapus?'))
+            {
+                $.post(url,{
+                    '_method': 'delete'
+                })
+                .done(response => {
+                    showAlert(response.message, 'success');
+                    table.ajax.reload()
+                })
+                .fail(errors => {
+                    showAlert('Tidak Dapat Menghapus Data');
+                    return;
+                });
+            }
+        }
+
+        function resetForm(selector)
+        {
+            $(selector)[0].reset();
+
+            $('.select2').trigger('change');
+            $('.form-control, .custom-select, .custom-radio, .custom-checkbox, .select2').removeClass('is-invalid');
+            $('.invalid-feedback').remove();
+        }
+
+        function loopForm(originalForm)
+        {
+            for (const field in originalForm)
+            {
+                if($('[name=${filed}]').attr('type') != 'file')
+                {
+                    if($('[name=${field}]').hasClass('summernote'))
+                    {
+                        $('[name=${field}]'.summernote('code', originalForm[field]));
+                    }
+
+                    $('[name=${field}]').val(originalForm[filed]);
+                    $('select').trigger('change');
+                }
+            }
+        }
+
+        function loopErrors(errors)
+        {
+            $('.invalid-feedback').remove();
+
+            if(errors == undefined)
+            {
+                return;
+            }
+
+            for(error in errors)
+            {
+                $('[name=${error}]').addClass('is-invalid');
+
+                $('<span class="error invalid-feedback">${error[error[0]]}</span>')
+                    .insertAfter($('[name=${error}]'));
+            }
+        }
+
+
+    </script>
+
+    @endpush
+    <!-- End Vendor -->
 
 
 

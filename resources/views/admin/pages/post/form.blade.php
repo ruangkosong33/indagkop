@@ -8,7 +8,7 @@
         <div class="col-lg-6">
             <div class="form-group">
                 <label for="title_post">Judul</label>
-                <input type="text" name="title_post" class="form-control">
+                <input type="text" name="title_post" id="title_post" class="form-control">
             </div>
         </div>
         <div class="col-lg-6">
@@ -26,7 +26,7 @@
 
     <div class="form-group">
         <label for="description">Deskripsi</label>
-        <textarea name="description" class="form-control summernote"></textarea>
+        <textarea name="description" id="description" class="form-control summernote"></textarea>
     </div>
 
     <div class="row">
@@ -69,10 +69,10 @@
             </div>
         </div>
     </div>
-    
+
     <x-slot name="footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <button class="btn btn-primary">Simpan</button>
+        <button type="button" class="btn btn-primary" onclick="submitForm(this.form)">Simpan</button>
     </x-slot>
 
 </x-modal>

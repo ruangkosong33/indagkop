@@ -1,4 +1,4 @@
-@push('toast')
+@push('script')
     @if(session()->has('success'))
     <script>
         $(document).Toasts('create',
@@ -14,8 +14,8 @@
         }, 3000);
     </script>
 
-    @elseif (session()->has('error'))
-    
+    @elseif (session()->has('erros'))
+
     <script>
         $(document).Toasts('create',
         {

@@ -16,48 +16,50 @@ class PostController extends Controller
 
         $category=Category::orderBy('id')->get();
 
-        return view('admin.pages.post.index-post', ['post'=>$post, 'category'=>$category]);
+        $user=User::orderBy('id')->get();
+
+        return view('admin.pages.post.index-post', ['post'=>$post, 'category'=>$category, 'user'=>$user]);
     }
 
     public function create()
     {
-        $category=Category::all();
+        $category=Category::orderBy('id')->get();
 
-        $user=User::all();
+        $user=User::orderBy('id')->get();
 
         return view('admin.pages.post.create-post', ['category'=>$category, 'user'=>$user]);
     }
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'title_post'=>'required',
-            'description'=>'required',
-            'image'=>'mimes:jpeg,png,jpg|max:10000',
-            'status'=>'required',
-        ]);
+        // $this->validate($request, [
+        //     'title_post'=>'required',
+        //     'description'=>'required',
+        //     'image'=>'mimes:jpeg,png,jpg|max:10000',
+        //     'status'=>'required',
+        // ]);
 
-        if($request->file('image'))
-        {
-            $file=$request->file('image');
-            $extension=$file->getClientOriginalName();
-            $images=$extension;
-            $file->storeAs('uploads/image-post', $images);
-        }
+        // if($request->file('image'))
+        // {
+        //     $file=$request->file('image');
+        //     $extension=$file->getClientOriginalName();
+        //     $images=$extension;
+        //     $file->storeAs('uploads/image-post', $images);
+        // }
 
-        $post=Post::create([
-            'title_post'=>$request->title_post,
-            'description'=>$request->description,
-            'category_id'=>$request->category_id,
-            'image'=>$images,
-            'user_id'=>Auth::id(),
-            'status'=>$request->status,
+        // $post=Post::create([
+        //     'title_post'=>$request->title_post,
+        //     'description'=>$request->description,
+        //     'category_id'=>$request->category_id,
+        //     'image'=>$images,
+        //     'user_id'=>Auth::id(),
+        //     'status'=>$request->status,
 
-        ]);
+        // ]);
 
-        Alert::success('Berhasil', 'Data Berhasil Di Simpan');
+        // Alert::success('Berhasil', 'Data Berhasil Di Simpan');
 
-        return redirect()->route('post.index');
+        // return redirect()->route('post.index');
     }
 
     public function edit(Post $post)

@@ -14,14 +14,12 @@ class EmployeeController extends Controller
     {
         $employee=Employee::with(['division'])->get();
 
-        return $employee;
-
         return view('admin.pages.employee.index-employee', ['employee'=>$employee]);
     }
 
     public function create()
     {
-        $division=Division::all();
+        $division=Division::orderBy('id')->get();
 
         return view('admin.pages.employee.create-employee', ['division'=>$division]);
     }
@@ -82,6 +80,8 @@ class EmployeeController extends Controller
             'pim'=>'required',
         ]);
 
+        $images=$employee->image;
+
         if($request->file('image'))
         {
             $file=$request->file('image');
@@ -91,7 +91,7 @@ class EmployeeController extends Controller
         }
             unset($employee ['image']);
 
-        $employee=Employee::create([
+        $employee->update([
             'division_id'=>$request->division_id,
             'name'=>$request->name,
             'nip'=>$request->nip,
