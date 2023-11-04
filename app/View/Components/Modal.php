@@ -8,12 +8,13 @@ use Illuminate\View\Component;
 
 class Modal extends Component
 {
+    public $size;
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($size= 'modal-md')
     {
-        //
+        $this->size=$size;
     }
 
     /**

@@ -1,4 +1,4 @@
-<x-modal>
+<x-modal size="modal-xl">
 
     <x-slot name="title">
         Tambah Berita

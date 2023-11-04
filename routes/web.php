@@ -33,9 +33,11 @@ use App\Http\Controllers\Organization\EmployeeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', fn()=>redirect('login'));
 
 Auth::routes();
 

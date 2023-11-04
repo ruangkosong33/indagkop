@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 // use RealRashid\SweetAlert\Facades\Alert;
 
 class CategoryController extends Controller
@@ -22,7 +23,7 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $validator=Validator::make($request->all(),[
             'title_category'=>'required',
         ]);
 
@@ -32,7 +33,9 @@ class CategoryController extends Controller
 
         // Alert::success('Berhasil', 'Data Berhasil Di Simpan');
 
-        return redirect()->route('category.index')->with(['message'=>'Kategori Berhasil Di Tambahkan', 'success'=>true]);
+        // return redirect()->route('category.index')->with(['message'=>'Kategori Berhasil Di Tambahkan', 'success'=>true]);
+
+        return response()->json('Data Berhasil Di Simpan', 200);
     }
 
     public function edit(Category $category)
