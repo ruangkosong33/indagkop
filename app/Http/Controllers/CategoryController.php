@@ -5,20 +5,34 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-// use RealRashid\SweetAlert\Facades\Alert;
 
 class CategoryController extends Controller
 {
     public function index()
     {
+        return view('admin.pages.category.index-category');
+    }
+    
+    public function datas()
+    {
         $category=Category::orderBy('id')->get();
+        
+        return Datatables()->of($category)
+            ->addIndexColumn()
+            ->addColumn('action', function($row)
+            {
+                $btn = '<a href="" class="edit btn btn-warning btn-sm "><i class="fas fa-edit"></i></a>';
+                $btn = $btn. '<a href="javascript:void(0)" class="destroy btn btn-danger btn-sm ml-1"><i class="fas fa-trash"></i></a>';
 
-        return view('admin.pages.category.index-category', ['category'=>$category]);
+                return $btn;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
     }
 
     public function create()
     {
-        return view('admin.pages.category.create-category');
+        
     }
 
     public function store(Request $request)
@@ -31,11 +45,7 @@ class CategoryController extends Controller
             'title_category'=>$request->title_category,
         ]);
 
-        // Alert::success('Berhasil', 'Data Berhasil Di Simpan');
 
-        // return redirect()->route('category.index')->with(['message'=>'Kategori Berhasil Di Tambahkan', 'success'=>true]);
-
-        return response()->json('Data Berhasil Di Simpan', 200);
     }
 
     public function edit(Category $category)

@@ -57,6 +57,7 @@ Route::group(['middleware'=>['auth', 'role:admin']], function()
 
     //CATEGORY
     Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
+    Route::get('/category/datas', [CategoryController::class, 'datas'])->name('category.datas');
     Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
     Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
     Route::get('/category/edit/{category}', [CategoryController::class, 'edit'])->name('category.edit');

@@ -57,9 +57,9 @@
         {
             $('#modal-form').modal('show');
             $('#modal-form .modal-title').text(title);
-            $('${modal} form').attr('action', url);
+            $('#modal-form form').attr('action', url);
 
-            resetForm('${modal} form');
+            resetForm('#modal-form form');
         }
 
         function editForm(url, title ='Edit')
@@ -99,6 +99,7 @@
                 if(errors.status == 422)
                 {
                     loopErrors(errors.responseJSON.errors);
+                    return;
                 }
 
                 showAlert(errors.responseJSON.message, 'danger');
@@ -158,16 +159,38 @@
                 return;
             }
 
-            for(error in errors)
-            {
-                $('[name=${error}]').addClass('is-invalid');
+            for (error in errors) {
+                $('[name="' + error + '"]').addClass('is-invalid');
 
-                $('<span class="error invalid-feedback">${error[error[0]]}</span>')
-                    .insertAfter($('[name=${error}]'));
+                $('<span class="error invalid-feedback">' + errors[error] + '</span>')
+                .insertAfter($('[name="' + error + '"]'));
             }
         }
 
+        function showAlert(message, type)
+        {
+            let title = '';
+            switch(type)
+            {
+                case 'success':
+                    title='Success';
+                    break;
+                case 'danger':
+                    title="Failed";
+                    break;
+                default:
+                    break;
+            }
+            $(document).Toasts('create',{
+                class: 'bg-${type}',
+                title: title,
+                body: message
+            });
 
+            setTimeout(() => {
+                $('.toats-top-right').remove();
+            }, 3000);
+        }
     </script>
 
     @endpush

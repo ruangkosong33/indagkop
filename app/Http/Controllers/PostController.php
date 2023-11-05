@@ -6,7 +6,7 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
@@ -21,46 +21,27 @@ class PostController extends Controller
         return view('admin.pages.post.index-post', ['post'=>$post, 'category'=>$category, 'user'=>$user]);
     }
 
-    public function create()
+    public function datas()
     {
-        $category=Category::orderBy('id')->get();
 
-        $user=User::orderBy('id')->get();
-
-        return view('admin.pages.post.create-post', ['category'=>$category, 'user'=>$user]);
     }
 
     public function store(Request $request)
     {
-        // $this->validate($request, [
-        //     'title_post'=>'required',
-        //     'description'=>'required',
-        //     'image'=>'mimes:jpeg,png,jpg|max:10000',
-        //     'status'=>'required',
-        // ]);
+        $validator=Validator::make($request->all(),[
+            'title_post'=>'required',
+            'category'=>'required',
+            'description'=>'required',
+            'image'=>'mimes:jpeg,png,jgp|max:10000',
+            'date'=>'required|date_format:Y-m-d H:i',
+        ]);
 
-        // if($request->file('image'))
-        // {
-        //     $file=$request->file('image');
-        //     $extension=$file->getClientOriginalName();
-        //     $images=$extension;
-        //     $file->storeAs('uploads/image-post', $images);
-        // }
-
-        // $post=Post::create([
-        //     'title_post'=>$request->title_post,
-        //     'description'=>$request->description,
-        //     'category_id'=>$request->category_id,
-        //     'image'=>$images,
-        //     'user_id'=>Auth::id(),
-        //     'status'=>$request->status,
-
-        // ]);
-
-        // Alert::success('Berhasil', 'Data Berhasil Di Simpan');
-
-        // return redirect()->route('post.index');
+        if($validator->fails())
+        {
+            return response()->json(['errors'=>$validator->errors()], 422);
+        }
     }
+       
 
     public function edit(Post $post)
     {

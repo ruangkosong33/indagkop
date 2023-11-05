@@ -13,9 +13,8 @@
         </div>
         <div class="col-lg-6">
             <div class="form-group">
-                <label for="categorys">Kategori</label>
-                <select name="categorys" id="categorys" class="form-control select2">
-                    <option disabled selected>--Pilih--</option>
+                <label for="category">Kategori</label>
+                <select name="category[]" id="categorys" class="form-control select2" multiple>
                     @foreach ($category as $categorys)
                     <option value={{$categorys->id}}>{{$categorys->title_category}}</option>
                     @endforeach

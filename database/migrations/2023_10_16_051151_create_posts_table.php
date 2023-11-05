@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->dateTime('date')->nullable();
             $table->enum('status', ['publish', 'draft'])->nullable();
+            $table->integer('view_count')->default(0);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
