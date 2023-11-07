@@ -1,4 +1,4 @@
-<x-modal size="modal-sm">
+<x-modal size="modal-md">
 
     <x-slot name="title">
         Tambah Kategori
@@ -15,7 +15,7 @@
 
     <x-slot name="footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-        <button class="btn btn-primary">Simpan</button>
+        <button type="button" onclick="submitForm(this.form)" class="btn btn-primary">Simpan</button>
     </x-slot>
 
 </x-modal>

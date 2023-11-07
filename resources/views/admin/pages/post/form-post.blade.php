@@ -13,8 +13,9 @@
         </div>
         <div class="col-lg-6">
             <div class="form-group">
-                <label for="category">Kategori</label>
-                <select name="category[]" id="categorys" class="form-control select2" multiple>
+                <label for="category_id">Kategori</label>
+                <select name="category_id" id="categorys" class="form-control">
+                    <option disabled selected>Pilih Kategori</option>
                     @foreach ($category as $categorys)
                     <option value={{$categorys->id}}>{{$categorys->title_category}}</option>
                     @endforeach
@@ -58,12 +59,14 @@
             <div class="form-group">
                 <label for="image">Gambar</label>
                 <div class="custom-file">
-                    <input type="file" name="image" class="custom-file-input" id="image"
-                       onchange="preview('.preview-image', this.files[0])">
+                    <input type="file" name="image" class="form-control" id="image"
+                       {{-- onchange="preview('.preview-image', this.files[0])"> --}}
+                       onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
                     <label class="custom-file-label" for="image">Pilih Gambar</label>
                 </div>
 
-                <img src="" class="img-thumbnail preview-image" style="display: none;">
+                {{-- <img src="" class="img-thumbnail preview-image" style="display: none;"> --}}
+                <div class="mt-3"><img src="" id="output" width="500"></div>
 
             </div>
         </div>

@@ -65,6 +65,7 @@ Route::group(['middleware'=>['auth', 'role:admin']], function()
     Route::delete('/category/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
 
     //POST
+    Route::get('/post/datas', [PostController::class, 'datas'])->name('post.datas');
     Route::get('/post', [PostController::class, 'index'])->name('post.index');
     Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
     Route::post('/post', [PostController::class, 'store'])->name('post.store');

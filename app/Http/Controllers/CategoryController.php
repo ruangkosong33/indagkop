@@ -12,11 +12,11 @@ class CategoryController extends Controller
     {
         return view('admin.pages.category.index-category');
     }
-    
+
     public function datas()
     {
         $category=Category::orderBy('id')->get();
-        
+
         return Datatables()->of($category)
             ->addIndexColumn()
             ->addColumn('action', function($row)
@@ -30,22 +30,22 @@ class CategoryController extends Controller
             ->make(true);
     }
 
-    public function create()
-    {
-        
-    }
-
     public function store(Request $request)
     {
         $validator=Validator::make($request->all(),[
             'title_category'=>'required',
         ]);
 
+        if($validator->fails())
+        {
+            return response()->json(['errors'=>$validator->errors()], 422);
+        }
+
         $category=Category::create([
             'title_category'=>$request->title_category,
         ]);
 
-
+        return response()->json([$category, 'message'=>'Data Berhasil Di Tambahkan']);
     }
 
     public function edit(Category $category)

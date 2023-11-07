@@ -22,8 +22,9 @@
                         <th>No</th>
                         <th>Judul</th>
                         <th>Kategori</th>
-                        <th>Gambar</th>
                         <th>Status</th>
+                        <th>Tanggal</th>
+                        <th>Author</th>
                         <th>Action</th>
                     </x-slot>
 
@@ -33,7 +34,7 @@
     </div>
 
    <!-- Form -->
-    @include('admin.pages.post.form')
+    @include('admin.pages.post.form-post')
    <!-- End Form -->
 
 @endsection
@@ -48,10 +49,25 @@
 
     @push('script')
     <script>
-
         let table;
 
-        $('.table').DataTable();
+        $(function(){
+            table= $('.table').DataTable({
+                processing: true,
+                autoWidth: false,
+                ajax: { url: '{{route('post.datas')}}'},
+                columns:
+                [
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
+                    {data: 'title_post', name: 'title_post', sortable:false},
+                    {data: 'category', name: 'category'},
+                    {data: 'status', name: 'status'},
+                    {data: 'date', name: 'date'},
+                    {data: 'user', name: 'user'},
+                    {data: 'action', name: 'action'},
+                ]
+            });
+        });
 
         function addForm(url, title = 'Tambah')
         {
@@ -67,15 +83,15 @@
             $.get(url)
                 .done(response => {
                     $(modal).modal('show');
-                    $('${modal} .modal-title').text(title);
-                    $('${modal} form').attr('action', url);
+                    $('#modal-form .modal-title').text(title);
+                    $('#modal-form form').attr('action', url);
 
-                    resetForm('${modal} form');
+                    resetForm('#modal-form form');
 
                     loopForm(response.data);
                 })
                 .fail(errors => {
-                    alert('Tidak Dapat Menampilkan Data');
+                    showAlert('Tidak Dapat Menampilkan Data');
                     return;
                 });
         }
@@ -91,7 +107,7 @@
                 processData: false,
             })
             .done(response => {
-                $(modal).modal('hide');
+                $('#modal-form').modal('hide');
                 showAlert(response.message, 'success');
                 table.ajax.reload();
             })
@@ -129,23 +145,24 @@
             $(selector)[0].reset();
 
             $('.select2').trigger('change');
+            $('.summernote').summernote('code', '');
+            $('.preview-image').attr('src', '');
             $('.form-control, .custom-select, .custom-radio, .custom-checkbox, .select2').removeClass('is-invalid');
             $('.invalid-feedback').remove();
         }
 
         function loopForm(originalForm)
         {
-            for (const field in originalForm)
-            {
-                if($('[name=${filed}]').attr('type') != 'file')
-                {
-                    if($('[name=${field}]').hasClass('summernote'))
-                    {
-                        $('[name=${field}]'.summernote('code', originalForm[field]));
+            for (const field in originalForm) {
+                if ($('[name="' + field + '"]').attr('type') != 'file') {
+                    if ($('[name="' + field + '"]').hasClass('summernote')) {
+                        $('[name="' + field + '"]').summernote('code', originalForm[field]);
                     }
 
-                    $('[name=${field}]').val(originalForm[filed]);
+                    $('[name="' + field + '"]').val(originalForm[field]);
                     $('select').trigger('change');
+                }else {
+                    $(`.preview-${field}`).attr('src', originalForm[field]).show();
                 }
             }
         }
@@ -162,8 +179,16 @@
             for (error in errors) {
                 $('[name="' + error + '"]').addClass('is-invalid');
 
-                $('<span class="error invalid-feedback">' + errors[error] + '</span>')
-                .insertAfter($('[name="' + error + '"]'));
+                if ($('[name="' + error + '"]').hasClass('select2')) {
+                    $('<span class="error invalid-feedback">' + errors[error] + '</span>')
+                        .insertAfter($('[name="' + error + '"]').next());
+                } else if ($('[name="' + error + '"]').hasClass('summernote')) {
+                    $('<span class="error invalid-feedback">' + errors[error] + '</span>')
+                        .insertAfter($('[name="' + error + '"]').next());
+                } else {
+                    $('<span class="error invalid-feedback">' + errors[error] + '</span>')
+                        .insertAfter($('[name="' + error + '"]'));
+                }
             }
         }
 
@@ -182,13 +207,13 @@
                     break;
             }
             $(document).Toasts('create',{
-                class: 'bg-${type}',
+                class: `bg-${type}`,
                 title: title,
-                body: message
+                body: message,
             });
 
             setTimeout(() => {
-                $('.toats-top-right').remove();
+                $('.toasts-top-right').remove();
             }, 3000);
         }
     </script>

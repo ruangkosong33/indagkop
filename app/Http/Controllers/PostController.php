@@ -6,32 +6,48 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
 {
     public function index()
     {
-        $post=Post::orderBy('id')->get();
-
         $category=Category::orderBy('id')->get();
 
-        $user=User::orderBy('id')->get();
-
-        return view('admin.pages.post.index-post', ['post'=>$post, 'category'=>$category, 'user'=>$user]);
+        return view('admin.pages.post.index-post', ['category'=>$category]);
     }
 
     public function datas()
     {
+        $post=Post::orderBy('date')->get();
 
+        return Datatables()->of($post)
+            ->addIndexColumn()
+            ->addColumn('user', function($user)
+            {
+                return $user->user->name;
+            })
+            ->addColumn('category', function($category)
+            {
+                return $category->category->title_category;
+            })
+            ->addColumn('action', function($row)
+            {
+                $btn = '<a href="" class="edit btn btn-warning btn-sm "><i class="fas fa-edit"></i></a>';
+                $btn = $btn. '<a href="javascript:void(0)" class="destroy btn btn-danger btn-sm ml-1"><i class="fas fa-trash"></i></a>';
+
+                return $btn;
+            })
+            ->rawColumns(['action'])
+            ->escapeColumns([])
+            ->make(true);
     }
 
     public function store(Request $request)
     {
         $validator=Validator::make($request->all(),[
             'title_post'=>'required',
-            'category'=>'required',
-            'description'=>'required',
             'image'=>'mimes:jpeg,png,jgp|max:10000',
             'date'=>'required|date_format:Y-m-d H:i',
         ]);
@@ -40,8 +56,35 @@ class PostController extends Controller
         {
             return response()->json(['errors'=>$validator->errors()], 422);
         }
+
+        if($request->file('image'))
+        {
+            $file=$request->file('image');
+            $extension=$file->getClientOriginalName();
+            $images=$extension;
+            $file->storeAs('public/uploads/images-post', $images);
+        }else{
+            $images="";
+        }
+
+        $post=Post::create([
+            'title_post'=>$request->title_post,
+            'category_id'=>$request->category_id,
+            'description'=>$request->description,
+            'image'=>$images,
+            'date'=>$request->date,
+            'user_id'=>Auth::id(),
+        ]);
+
+        return response()->json([$post, 'message'=>'Data Berhasil Di Tambahkan']);
     }
-       
+
+    public function show(Post $post)
+    {
+        $post->date=date('Y-m-d H:i', strtotime($post->date));
+
+        return response()->json(['data'=>$post]);
+    }
 
     public function edit(Post $post)
     {
