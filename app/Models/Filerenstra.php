@@ -12,8 +12,23 @@ class Filerenstra extends Model
 
     protected $table='filerenstra';
 
-    protected $fillable=['title_file', 'slug', 'file'];
+    protected $fillable=['renstra_id', 'title_file', 'slug', 'file'];
 
     protected $hidden=[];
 
+     //SLUG
+     public function sluggable(): array
+     {
+         return [
+             'slug' => [
+                 'source' => 'title_file',
+             ]
+         ];
+     }
+
+     //RELATION
+     public function renstra()
+     {
+         return $this->belongsTo(Renstra::class, 'renstra_id', 'id');
+     }
 }

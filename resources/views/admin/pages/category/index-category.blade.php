@@ -68,7 +68,7 @@
         {
             $.get(url)
                 .done(response => {
-                    $(modal).modal('show');
+                    $('#odal').modal('show');
                     $('#modal-form .modal-title').text(title);
                     $('#modal-form form').attr('action', url);
 

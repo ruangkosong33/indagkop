@@ -25,4 +25,10 @@ class Renstra extends Model
             ]
         ];
     }
+
+    //RELATION
+    public function filerenstra()
+    {
+        return $this->hasMany(Filerenstra::class, 'renstra_id', 'id');
+    }
 }

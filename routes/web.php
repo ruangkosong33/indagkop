@@ -90,6 +90,7 @@ Route::group(['middleware'=>['auth', 'role:admin']], function()
     Route::delete('/division/{division}', [DivisionController::class, 'destroy'])->name('division.destroy');
 
     //HISTORICAL
+    Route::get('/historical/datas', [HistoricalController::class, 'datas'])->name('historical.datas');
     Route::get('/historical', [HistoricalController::class, 'index'])->name('historical.index');
     Route::get('/historical/create', [HistoricalController::class, 'create'])->name('historical.create');
     Route::post('/historical', [HistoricalController::class, 'store'])->name('historical.store');
@@ -186,6 +187,7 @@ Route::group(['middleware'=>['auth', 'role:admin']], function()
     Route::delete('/neraca/{neraca}', [NeracaController::class, 'destroy'])->name('neraca.destroy');
 
     //BANNER
+    Route::get('/banner/datas', [BannerController::class, 'datas'])->name('banner.datas');
     Route::get('/banner', [BannerController::class, 'index'])->name('banner.index');
     Route::get('/banner/create', [BannerController::class, 'create'])->name('banner.create');
     Route::post('/banner', [BannerController::class, 'store'])->name('banner.store');

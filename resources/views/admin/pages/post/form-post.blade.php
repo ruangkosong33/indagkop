@@ -58,12 +58,9 @@
         <div class="col-lg-6">
             <div class="form-group">
                 <label for="image">Gambar</label>
-                <div class="custom-file">
-                    <input type="file" name="image" class="form-control" id="image"
+                    <input type="file" name="image" class="form-control" id="image" placeholder="Pilih Gambar"
                        {{-- onchange="preview('.preview-image', this.files[0])"> --}}
                        onchange="document.getElementById('output').src = window.URL.createObjectURL(this.files[0])">
-                    <label class="custom-file-label" for="image">Pilih Gambar</label>
-                </div>
 
                 {{-- <img src="" class="img-thumbnail preview-image" style="display: none;"> --}}
                 <div class="mt-3"><img src="" id="output" width="500"></div>

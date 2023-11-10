@@ -60,11 +60,11 @@
                 [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
                     {data: 'title_post', name: 'title_post', sortable:false},
-                    {data: 'category', name: 'category'},
-                    {data: 'status', name: 'status'},
-                    {data: 'date', name: 'date'},
-                    {data: 'user', name: 'user'},
-                    {data: 'action', name: 'action'},
+                    {data: 'category', name: 'category', sortable:false},
+                    {data: 'status', name: 'status', sortable:false},
+                    {data: 'date', name: 'date', sortable:false},
+                    {data: 'user', name: 'user', sortable: false},
+                    {data: 'action', name: 'action', sortable: false},
                 ]
             });
         });
@@ -146,7 +146,7 @@
 
             $('.select2').trigger('change');
             $('.summernote').summernote('code', '');
-            $('.preview-image').attr('src', '');
+            $('#output').attr('src', '');
             $('.form-control, .custom-select, .custom-radio, .custom-checkbox, .select2').removeClass('is-invalid');
             $('.invalid-feedback').remove();
         }

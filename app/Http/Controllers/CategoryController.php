@@ -21,10 +21,10 @@ class CategoryController extends Controller
             ->addIndexColumn()
             ->addColumn('action', function($row)
             {
-                $btn = '<a href="" class="edit btn btn-warning btn-sm "><i class="fas fa-edit"></i></a>';
-                $btn = $btn. '<a href="javascript:void(0)" class="destroy btn btn-danger btn-sm ml-1"><i class="fas fa-trash"></i></a>';
-
-                return $btn;
+                return '
+                <button onclick="editForm(`'.route('category.edit', $row->id).'`)"  class="edit btn btn-warning btn-sm "><i class="fas fa-edit"></i></button>
+                <button onclick="deleteData(`'.route('category.destroy', $row->id).'`)" class="destroy btn btn-danger btn-sm ml-1"><i class="fas fa-trash"></i></button>
+                ';
             })
             ->rawColumns(['action'])
             ->make(true);
@@ -50,7 +50,7 @@ class CategoryController extends Controller
 
     public function edit(Category $category)
     {
-        return view('admin.pages.category.edit-category', ['category'=>$category]);
+        $category;
     }
 
     public function update(Request $request,  Category $category)
