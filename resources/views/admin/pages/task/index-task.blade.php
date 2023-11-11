@@ -13,34 +13,30 @@
             <x-card>
                 <x-slot name="header">
                     @if($task->isEmpty())
-                    <a href="{{route('task.create')}}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah</a>
+                        <a href="{{route('task.create')}}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah</a>
+                    @else
+                    @foreach ($task as $tasks)
+                        <a href="{{route('task.edit', $tasks->id)}}" class="btn btn-warning"><i class="fas fa-plus-circle"></i> Edit</a>
+                    @endforeach
                     @endif
+                    
                 </x-slot>
 
-                <x-table id="myTable">
+                <x-table>
                     <x-slot name="thead">
                         <th>Judul</th>
                         <th>Deskripsi</th>
-                        <th>Action</th>
                     </x-slot>
-                    @foreach ($task as $tasks)
+                        @foreach ($task as $tasks)
                         <tr>
+                            <td width="38%">Sub Judul</td>
                             <td>{{$tasks->title_task}}</td>
-                            <td>{{$tasks->description}}</td>
-                            <td>
-                                <a href="{{route('task.edit', $tasks->id)}}" class="btn btn-warning btn-sm">
-                                    <i class="fas fa-edit"></i>
-                                </a>
-                                <form method="post" action="{{route('task.destroy', $tasks->id)}}" class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-sm btn-danger btn-delete" onclick="return confirm('Yakin Ingin Menghapus Data?')">
-                                      <i class="fas fa-trash"></i>
-                                    </button>
-                                </form>
-                            </td>
                         </tr>
-                    @endforeach
+                        <tr>
+                            <td width="38%">Deskripsi</td>
+                            <td>{!!$tasks->description!!}</td>
+                        </tr>
+                        @endforeach
                 </x-table>
             </x-card>
         </div>

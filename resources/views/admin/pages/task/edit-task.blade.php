@@ -21,8 +21,7 @@
                     </div>
                     <div class="form-group">
                         <label for="description">Deskripsi</label>
-                        <input type="text" class="form-control" name="description" placeholder="Deskripsi"
-                        value="{{old('description') ?? $task->description}}">
+                        <textarea class="form-control" name="description" placeholder="Deskripsi">{{old('description') ?? $task->description ?? ''}}</textarea>
                     <x-slot name="footer">
                         <button type="reset" class="btn btn-dark">Reset</button>
                         <button type="submit" class="btn btn-primary">Simpan</button>

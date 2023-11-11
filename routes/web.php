@@ -90,7 +90,6 @@ Route::group(['middleware'=>['auth', 'role:admin']], function()
     Route::delete('/division/{division}', [DivisionController::class, 'destroy'])->name('division.destroy');
 
     //HISTORICAL
-    Route::get('/historical/datas', [HistoricalController::class, 'datas'])->name('historical.datas');
     Route::get('/historical', [HistoricalController::class, 'index'])->name('historical.index');
     Route::get('/historical/create', [HistoricalController::class, 'create'])->name('historical.create');
     Route::post('/historical', [HistoricalController::class, 'store'])->name('historical.store');

@@ -34,7 +34,7 @@ class LeaderController extends Controller
             $file=$request->file('image_head');
             $extension=$file->getClientOriginalName();
             $imageleader=$extension;
-            $file->storeAs('uploads/image-leader', $imageleader);
+            $file->storeAs('public/uploads/image-leader', $imageleader);
         }
 
         $leader=Leader::create([
