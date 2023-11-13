@@ -47,6 +47,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('logout', function()
 {
     Auth::logout();
+
+    return redirect('/');
 });
 
 //MIDDLEWARE
@@ -56,11 +58,10 @@ Route::group(['middleware'=>['auth', 'role:admin']], function()
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
     //CATEGORY
-    Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
     Route::get('/category/datas', [CategoryController::class, 'datas'])->name('category.datas');
-    Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
+    Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
     Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
-    Route::get('/category/edit/{category}', [CategoryController::class, 'edit'])->name('category.edit');
+    Route::get('/category/show/{category}', [CategoryController::class, 'show'])->name('category.show');
     Route::put('/category/{category}', [CategoryController::class, 'update'])->name('category.update');
     Route::delete('/category/{category}', [CategoryController::class, 'destroy'])->name('category.destroy');
 

@@ -13,20 +13,21 @@ class CategoryController extends Controller
         return view('admin.pages.category.index-category');
     }
 
-    public function datas()
+    public function datas(Request $request)
     {
         $category=Category::orderBy('id')->get();
 
-        return Datatables()->of($category)
+        return datatables($category)
             ->addIndexColumn()
             ->addColumn('action', function($row)
             {
                 return '
-                <button onclick="editForm(`'.route('category.edit', $row->id).'`)"  class="edit btn btn-warning btn-sm "><i class="fas fa-edit"></i></button>
+                <button onclick="editForm(`'.route('category.show', $row->id).'`)"  class="edit btn btn-warning btn-sm "><i class="fas fa-edit"></i></button>
                 <button onclick="deleteData(`'.route('category.destroy', $row->id).'`)" class="destroy btn btn-danger btn-sm ml-1"><i class="fas fa-trash"></i></button>
                 ';
             })
             ->rawColumns(['action'])
+            ->escapeColumns([])
             ->make(true);
     }
 
@@ -48,9 +49,14 @@ class CategoryController extends Controller
         return response()->json([$category, 'message'=>'Data Berhasil Di Tambahkan']);
     }
 
+    public function show(Category $category)
+    {
+        return ['data'=>$category];
+    }
+
     public function edit(Category $category)
     {
-        $category;
+
     }
 
     public function update(Request $request,  Category $category)
@@ -72,9 +78,7 @@ class CategoryController extends Controller
     {
         $category=Category::where('id', $category->id)->delete();
 
-        // Alert::success('Berhasil', 'Data Berhasil Di Hapus');
-
-        return redirect()->route('category.index')->with(['message'=>'Kategori Berhasil Di Hapus', 'success'=>true]);
+        return response()->json([$category, 'message'=>'Data Berhasil Di Hapus']);
     }
 
 }

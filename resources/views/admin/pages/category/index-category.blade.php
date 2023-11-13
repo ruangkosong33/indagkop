@@ -68,7 +68,7 @@
         {
             $.get(url)
                 .done(response => {
-                    $('#odal').modal('show');
+                    $('#modal-form').modal('show');
                     $('#modal-form .modal-title').text(title);
                     $('#modal-form form').attr('action', url);
 
@@ -135,18 +135,34 @@
             $('.invalid-feedback').remove();
         }
 
+        // function loopForm(originalForm)
+        // {
+        //     for (const field in originalForm)
+        //     {
+        //         if($(`[name=${field}]`).attr('type') !== 'file')
+        //         {
+        //             if($(`[name=${field}]`).hasClass('summernote'))
+        //             {
+        //                 $(`[name=${field}]`.summernote('code', originalForm[field]))
+        //             }
+
+        //             $(`[name=${field}]`).val(originalForm[field]);
+        //             $('select').trigger('change');
+        //         }
+        //     }
+        // }
         function loopForm(originalForm)
         {
             for (const field in originalForm)
             {
-                if($('[name=${filed}]').attr('type') != 'file')
+                if ($(`[name=${field}]`).attr('type') !== 'file')
                 {
-                    if($('[name=${field}]').hasClass('summernote'))
+                    if ($(`[name=${field}]`).hasClass('summernote'))
                     {
-                        $('[name=${field}]'.summernote('code', originalForm[field]));
+                        $(`[name=${field}]`).summernote('code', originalForm[field]);
                     }
 
-                    $('[name=${field}]').val(originalForm[filed]);
+                    $(`[name=${field}]`).val(originalForm[field]);
                     $('select').trigger('change');
                 }
             }

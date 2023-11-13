@@ -12,7 +12,7 @@
         <div class="col-lg-12">
             <x-card>
                 <x-slot name="header">
-                    @if($task->isEmpty())
+                    @if($policy->isEmpty())
                     <a href="{{route('policy.create')}}" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Tambah</a>
                     @endif
                 </x-slot>
